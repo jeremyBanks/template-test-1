@@ -1,0 +1,77 @@
+{
+  "name": "project",
+  "version": "0.0.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": "14.3.0"
+  },
+  "scripts": {
+    "build": "yarn pretty; git rm -rf docs || true; rm -rf docs build; yarn react-scripts build; mv build docs; rm -rf docs/asset-manifest.json docs/*/*/*LICENSE* docs/*/*/*.map docs/*manifest*.js docs/service-worker.js; echo \"$(basename \"${PWD}\").otter.academy\" > docs/CNAME; git add --force docs",
+    "noop": "true",
+    "pretty": "jsonsort --arrays *.json src public .github .vscode; prettier --ignore-path .gitignore --write '**/*.{ts,tsx,js,jsx,json,md,yml,yaml,html,css}'; import-sort --ignore-path .gitignore --write '**/*.{ts,tsx,js,jsx}'",
+    "start": "yarn react-scripts start"
+  },
+  "browserslist": {
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version"
+    ],
+    "production": [
+      "Firefox ESR",
+      "last 1 chrome version",
+      "last 1 edge version",
+      "last 1 firefox version",
+      "last 1 ios version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "overrides": [
+      {
+        "files": [
+          "*"
+        ],
+        "rules": {
+          "jsx-a11y/accessible-emoji": "off"
+        }
+      }
+    ]
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx, .mjs": {
+      "style": "module"
+    }
+  },
+  "prettier": {
+    "overrides": [
+      {
+        "files": [
+          "*.yaml",
+          "*.yml"
+        ],
+        "options": {
+          "parser": "json"
+        }
+      }
+    ],
+    "trailingComma": "none"
+  },
+  "type": "module",
+  "dependencies": {
+    "@types/node": "^14.0.5",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "emotion": "^10.0.27",
+    "husky": "^4.2.5",
+    "import-sort-cli": "^6.0.0",
+    "import-sort-parser-typescript": "^6.0.0",
+    "import-sort-style-module": "^6.0.0",
+    "lint-staged": "^10.2.6",
+    "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "typescript": "^3.9.3"
+  }
+}
